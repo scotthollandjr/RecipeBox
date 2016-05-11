@@ -12,4 +12,19 @@ public class Tag {
   public String getCategory() {
     return category;
   }
+
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Tag)) {
+      return false;
+    } else {
+      Tag newTag = (Tag) obj;
+      return this.getCategory().equals(newTag.getCategory()) &&
+      this.getId() == newTag.getId();
+    }
+  }
 }
