@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class RecipeTest {
 
-  // @Rule
-  // public DatabaseRule database = new DatabaseRule();
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
   @Test
   public void Recipe_recipeInstantiatesCorrectky_true() {
@@ -32,6 +32,13 @@ public class RecipeTest {
     Recipe firstRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
     Recipe secondRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
     assertTrue(firstRecipe.equals(secondRecipe));
+  }
+
+  @Test
+  public void save_savesRecipes_true() {
+    Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    newRecipe.save();
+    assertTrue(newRecipe.all().size() == 1);
   }
 
 }

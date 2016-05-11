@@ -54,4 +54,27 @@ public class Recipe {
       this.getDate().equals(newRecipe.getDate());
     }
   }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO recipes(rating, name, ingredients, instructions, date_created) VALUES (:rating, :name, :ingredients, :instructions, :date_created);";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("rating", this.rating)
+        .addParameter("name", this.name)
+        .addParameter("ingredients", this.ingredients)
+        .addParameter("instructions", this.instructions)
+        .addParameter("date_created", this.getDate())
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
+  public static List<Recipe> all() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM recipes;";
+      List<Recipe> all = con.createQuery(sql)
+        .executeAndFetch(Recipe.class);
+      return all;
+    }
+  }
 }
