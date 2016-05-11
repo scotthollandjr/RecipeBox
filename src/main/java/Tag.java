@@ -47,5 +47,14 @@ public class Tag {
     }
   }
 
-  
+  public static Tag find(int idInput) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM tags WHERE id=:id;";
+      Tag tag = con.createQuery(sql)
+        .addParameter("id", idInput)
+        .executeAndFetchFirst(Tag.class);
+      return tag;
+    }
+  }
+
 }
