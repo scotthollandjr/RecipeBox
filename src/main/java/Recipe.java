@@ -78,4 +78,22 @@ public class Recipe {
       return all;
     }
   }
+
+  public static Recipe find(int idInput) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM recipes WHERE id=:id;";
+      return con.createQuery(sql)
+        .addParameter("id", idInput)
+        .executeAndFetchFirst(Recipe.class);
+    }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM recipes WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", this.getId())
+        .executeUpdate();
+    }
+  }
 }

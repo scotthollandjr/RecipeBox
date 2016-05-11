@@ -7,7 +7,7 @@ public class TagTest {
 
   @Rule
   public DatabaseRule database = new DatabaseRule();
-  
+
   @Test
   public void Tag_instantiatesLikeItDo_true() {
     Tag newTag = new Tag("Mexican");
@@ -40,5 +40,13 @@ public class TagTest {
     newTag.save();
     Tag foundTag = Tag.find(newTag.getId());
     assertTrue(foundTag.equals(newTag));
+  }
+
+  @Test
+  public void delete_deletesTagFromDatabase_true() {
+    Tag newTag = new Tag("Mexican");
+    newTag.save();
+    newTag.delete();
+    assertTrue(newTag.all().size() == 0);
   }
 }

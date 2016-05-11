@@ -41,4 +41,19 @@ public class RecipeTest {
     assertTrue(newRecipe.all().size() == 1);
   }
 
+  @Test
+  public void find_findsRecipeById_true() {
+    Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    newRecipe.save();
+    Recipe foundRecipe = Recipe.find(newRecipe.getId());
+    assertTrue(foundRecipe.equals(newRecipe));
+  }
+
+  @Test
+  public void delete_deletesRecipeFromDB_true() {
+    Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    newRecipe.save();
+    newRecipe.delete();
+    assertTrue(newRecipe.all().size() == 0);
+  }
 }

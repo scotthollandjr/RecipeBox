@@ -50,11 +50,18 @@ public class Tag {
   public static Tag find(int idInput) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM tags WHERE id=:id;";
-      Tag tag = con.createQuery(sql)
+      return con.createQuery(sql)
         .addParameter("id", idInput)
         .executeAndFetchFirst(Tag.class);
-      return tag;
     }
   }
 
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM tags WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", this.getId())
+        .executeUpdate();
+    }
+  }
 }
