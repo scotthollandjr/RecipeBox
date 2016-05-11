@@ -8,6 +8,7 @@ public class Recipe {
   private String ingredients;
   private String instructions;
   private Date date_created;
+  private int id;
 
   public Recipe(int rating, String name, String ingredients, String instructions) {
     this.rating = rating;
@@ -15,6 +16,10 @@ public class Recipe {
     this.ingredients = ingredients;
     this.instructions = instructions;
     this.date_created = date_created;
+  }
+
+  public int getId() {
+    return id;
   }
 
   public int getRating() {
@@ -36,5 +41,17 @@ public class Recipe {
   public Date getDate() {
     java.util.Date date_created = new java.util.Date();
     return date_created;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Recipe)) {
+      return false;
+    } else {
+      Recipe newRecipe = (Recipe) obj;
+      return this.getId() == newRecipe.getId() && this.getRating() == newRecipe.getRating() &&
+      this.getName().equals(newRecipe.getName()) && this.getIngredients().equals(newRecipe.getIngredients()) && this.getInstructions().equals(newRecipe.getInstructions()) &&
+      this.getDate().equals(newRecipe.getDate());
+    }
   }
 }

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 public class RecipeTest {
 
+  // @Rule
+  // public DatabaseRule database = new DatabaseRule();
+
   @Test
   public void Recipe_recipeInstantiatesCorrectky_true() {
     Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
@@ -22,9 +25,13 @@ public class RecipeTest {
     Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
     java.util.Date currentDate = new java.util.Date();
     assertEquals(currentDate, newRecipe.getDate());
-    System.out.println(currentDate);
-    System.out.println(newRecipe.getDate());
   }
 
-  
+  @Test
+  public void Recipe_returnsTrueIfNamesAreEqual_true() {
+    Recipe firstRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    Recipe secondRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    assertTrue(firstRecipe.equals(secondRecipe));
+  }
+
 }
