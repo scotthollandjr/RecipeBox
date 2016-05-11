@@ -23,4 +23,11 @@ public class TagTest {
     Tag secondTag = new Tag("Mexican");
     assertTrue(firstTag.equals(secondTag));
   }
+
+  @Test
+  public void Tag_savesTagToDatabase_true() {
+    Tag newTag = new Tag("Mexican");
+    newTag.save();
+    assertTrue(newTag.all().size() == 1);
+  }
 }

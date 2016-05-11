@@ -9,6 +9,7 @@ public class Recipe {
   private String instructions;
   private Date date_created;
   private int id;
+  private List<String> categories;
 
   public Recipe(int rating, String name, String ingredients, String instructions) {
     this.rating = rating;

@@ -27,4 +27,25 @@ public class Tag {
       this.getId() == newTag.getId();
     }
   }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO tags(category) VALUES (:category);";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("category", this.category)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
+  public static List<Tag> all() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM tags;";
+      List<Tag> all = con.createQuery(sql)
+        .executeAndFetch(Tag.class);
+      return all;
+    }
+  }
+
+  
 }
