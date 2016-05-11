@@ -50,9 +50,9 @@ public class Recipe {
     } else {
       Recipe newRecipe = (Recipe) obj;
       return this.getId() == newRecipe.getId() && this.getRating() == newRecipe.getRating() &&
-      this.getName().equals(newRecipe.getName()) && this.getInstructions().equals(newRecipe.getInstructions()) &&
-      this.getIngredients().equals(newRecipe.getIngredients()) &&
-      this.getDate().equals(newRecipe.getDate());
+      this.getName().equals(newRecipe.getName()) &&
+      this.getIngredients().equals(newRecipe.getIngredients()) && this.getInstructions().equals(newRecipe.getInstructions());
+      //this.getDate().equals(newRecipe.getDate());
     }
   }
 
@@ -142,18 +142,21 @@ public class Recipe {
     return ingredientList;
   }
 
-  // public List<String> getRecipeIngredients() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT ingredient_id FROM ingredients_recipes WHERE recipe_id = :recipe_id;";
-  //     List<Integer> ingredientIds = con.createQuery(sql)
-  //       .addParameter("recipe_id", recipe_id)
-  //       .executeAndFetch(Integer.class);
-  //
-  //       List<String> ingredients = new ArrayList<String>();
-  //
-  //       String ingredientQuery = "SELECT * FROM ingredients WHERE id = :recipe_id;";
-  //
-  //     } return something;
-  //   }
+  public static Recipe getRecipeWithIngredient(String input) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM recipes WHERE ingredients LIKE :input";
+      return con.createQuery(sql)
+        .addParameter("input", input)
+        .executeAndFetchFirst(Recipe.class);
+    }
+  }
 
+  // public static Recipe find(int idInput) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT * FROM recipes WHERE id=:id;";
+  //     return con.createQuery(sql)
+  //       .addParameter("id", idInput)
+  //       .executeAndFetchFirst(Recipe.class);
+  //   }
+  // }
 }

@@ -96,4 +96,14 @@ public class RecipeTest {
     newRecipe.addTag(secondTag);
     assertTrue(Recipe.find(newRecipe.getId()).getTags().size() == 2);
   }
+  // @Test
+  // public void getRecipe_returnsRecipeWithSpecificIngredient_Recipe() {
+  //   Recipe newRecipe = new Recipe(5, "Todd's Tacos", "beef", "Put all the ingredients together");
+  //   newRecipe.save();
+  //   Recipe testRecipe = Recipe.getRecipeWithIngredient("\'%beef%\'");
+  //
+  //   assertTrue(newRecipe.getName().equals(testRecipe.getName()));
+  // }
 }
+
+//Recipe testRecipe = Recipe.find((Recipe.getRecipeWithIngredient("beef")).getId());
