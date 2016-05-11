@@ -6,12 +6,15 @@ public class Recipe {
   private String name;
   private String instructions;
   private Date date_created;
+  private String ingredients;
   private int id;
+  private List<String> ingredientList;
 
-  public Recipe(int rating, String name, String instructions) {
+  public Recipe(int rating, String name, String ingredients, String instructions) {
     this.rating = rating;
     this.name = name;
     this.instructions = instructions;
+    this.ingredients = ingredients;
     this.date_created = date_created;
   }
 
@@ -25,6 +28,10 @@ public class Recipe {
 
   public String getName() {
     return name;
+  }
+
+  public String getIngredients() {
+    return ingredients;
   }
 
   public String getInstructions() {
@@ -44,17 +51,19 @@ public class Recipe {
       Recipe newRecipe = (Recipe) obj;
       return this.getId() == newRecipe.getId() && this.getRating() == newRecipe.getRating() &&
       this.getName().equals(newRecipe.getName()) && this.getInstructions().equals(newRecipe.getInstructions()) &&
+      this.getIngredients().equals(newRecipe.getIngredients()) &&
       this.getDate().equals(newRecipe.getDate());
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO recipes(rating, name, instructions, date_created) VALUES (:rating, :name, :instructions, :date_created);";
+      String sql = "INSERT INTO recipes(rating, name, instructions, ingredients, date_created) VALUES (:rating, :name, :instructions, :ingredients, :date_created);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("rating", this.rating)
         .addParameter("name", this.name)
         .addParameter("instructions", this.instructions)
+        .addParameter("ingredients", this.ingredients)
         .addParameter("date_created", this.getDate())
         .executeUpdate()
         .getKey();
@@ -127,4 +136,24 @@ public class Recipe {
         .executeUpdate();
     }
   }
+
+  public List<String> getIngredientList() {
+    List<String> ingredientList = new ArrayList<String>(Arrays.asList(ingredients.split("\\s*,\\s*")));
+    return ingredientList;
+  }
+
+  // public List<String> getRecipeIngredients() {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT ingredient_id FROM ingredients_recipes WHERE recipe_id = :recipe_id;";
+  //     List<Integer> ingredientIds = con.createQuery(sql)
+  //       .addParameter("recipe_id", recipe_id)
+  //       .executeAndFetch(Integer.class);
+  //
+  //       List<String> ingredients = new ArrayList<String>();
+  //
+  //       String ingredientQuery = "SELECT * FROM ingredients WHERE id = :recipe_id;";
+  //
+  //     } return something;
+  //   }
+
 }
