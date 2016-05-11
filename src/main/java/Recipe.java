@@ -51,8 +51,8 @@ public class Recipe {
       Recipe newRecipe = (Recipe) obj;
       return this.getId() == newRecipe.getId() && this.getRating() == newRecipe.getRating() &&
       this.getName().equals(newRecipe.getName()) &&
-      this.getIngredients().equals(newRecipe.getIngredients()) && this.getInstructions().equals(newRecipe.getInstructions());
-      //this.getDate().equals(newRecipe.getDate());
+      this.getIngredients().equals(newRecipe.getIngredients()) && this.getInstructions().equals(newRecipe.getInstructions()) &&
+      this.getDate().equals(newRecipe.getDate());
     }
   }
 

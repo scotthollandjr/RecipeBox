@@ -1,18 +1,23 @@
 <h1 class="jumbotron">Recipe Box</h1>
 <div class="col-md-6">
   <h3>Choose a recipe:</h3>
+  <ul>
+    #foreach ($recipe in $recipes)
+      <li><a href="/recipe/$recipe.getId()"<h2>$recipe.getName()</h2></a></li>
+    #end
+  </ul>
 </div>
 <div class="col-md-6">
   <h3>Add a recipe:</h3>
   <form action="/" method="post">
     <div class="form-group">
-      <input class="form-control" for="name" placeholder="Name:"></input>
+      <input class="form-control" for="name" name="name" placeholder="Name:"></input>
     </div>
     <div class="form-group">
-      <input class="form-control" for="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
+      <input class="form-control" for="ingredients" name="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
     </div>
     <div class="form-group">
-      <input class="form-control" for="instructions" placeholder="Instructions:"></input>
+      <input class="form-control" for="instructions" name="instructions" placeholder="Instructions:"></input>
     </div>
 
     <div class="form-group col-xs-5">
@@ -27,8 +32,13 @@
     </div>
 
     <div class="form-group col-xs-5">
-      <select class="form-control" id="genre" name="category">
+      <select class="form-control" id="category" name="category">
         <option name="category" selected="selected" disabled>Select a category</option>
+        <option name="category" id="category" value="Breakfast">Breakfast</option>
+        <option name="category" id="category" value="Brunch">Brunch</option>
+        <option name="category" id="category" value="Lunch">Lunch</option>
+        <option name="category" id="category" value="Dinner">Dinner</option>
+        <option name="category" id="category" value="Dessert">Dessert</option>
         <option name="category" id="category" value="Mexican">Mexican</option>
         <option name="category" id="category" value="Chinese">Chinese</option>
         <option name="category" id="category" value="Indian">Indian</option>
@@ -44,11 +54,6 @@
         <option name="category" id="category" value="German">German</option>
         <option name="category" id="category" value="English">English</option>
         <option name="category" id="category" value="South American">South American</option>
-        <option name="category" id="category" value="Breakfast">Breakfast</option>
-        <option name="category" id="category" value="Brunch">Brunch</option>
-        <option name="category" id="category" value="Lunch">Lunch</option>
-        <option name="category" id="category" value="Dinner">Dinner</option>
-        <option name="category" id="category" value="Dessert">Dessert</option>
       </select>
     </div>
 
