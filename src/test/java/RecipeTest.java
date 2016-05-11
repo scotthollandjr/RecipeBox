@@ -56,4 +56,35 @@ public class RecipeTest {
     newRecipe.delete();
     assertTrue(newRecipe.all().size() == 0);
   }
+
+  @Test
+  public void update_updateRecipeName_true() {
+    Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    newRecipe.save();
+    newRecipe.update("Timmy's Tacos");
+    assertEquals("Timmy's Tacos", Recipe.find(newRecipe.getId()).getName());
+  }
+
+  @Test
+  public void addTags_addsTag_true() {
+    Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    Tag newTag = new Tag("Mexican");
+    newRecipe.save();
+    newTag.save();
+    newRecipe.addTag(newTag);
+    assertTrue(Recipe.find(newRecipe.getId()).getTags().size() == 1);
+  }
+
+  @Test
+  public void addTags_addsMultipleTags_true() {
+    Recipe newRecipe = new Recipe(5, "Todd's Tacos", "Beef, tortillas, cheese, beans, salsa, sourcream", "Put all the ingredients together");
+    Tag firstTag = new Tag("Mexican");
+    Tag secondTag = new Tag("Breakfast");
+    newRecipe.save();
+    firstTag.save();
+    secondTag.save();
+    newRecipe.addTag(firstTag);
+    newRecipe.addTag(secondTag);
+    assertTrue(Recipe.find(newRecipe.getId()).getTags().size() == 2);
+  }
 }

@@ -9,7 +9,7 @@ public class Recipe {
   private String instructions;
   private Date date_created;
   private int id;
-  private List<String> categories;
+  // private List<String> categories;
 
   public Recipe(int rating, String name, String ingredients, String instructions) {
     this.rating = rating;
@@ -93,6 +93,46 @@ public class Recipe {
       String sql = "DELETE FROM recipes WHERE id=:id;";
       con.createQuery(sql)
         .addParameter("id", this.getId())
+        .executeUpdate();
+    }
+  }
+
+  public void update(String newName) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE recipes SET name = :name WHERE id = :id;";
+      con.createQuery(sql)
+        .addParameter("name", newName)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public List<Tag> getTags() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT tag_id FROM tags_recipes WHERE recipe_id = :recipe_id;";
+      List<Integer> tagIds = con.createQuery(sql)
+      .addParameter("recipe_id", this.getId())
+      .executeAndFetch(Integer.class);
+
+      List<Tag> tags = new ArrayList<Tag>();
+
+      for (Integer tagId : tagIds) {
+        String recipeQuery = "SELECT * FROM tags WHERE id = :tagId;";
+        Tag tag = con.createQuery(recipeQuery)
+        .addParameter("tagId", tagId)
+        .executeAndFetchFirst(Tag.class);
+        tags.add(tag);
+      }
+      return tags;
+    }
+  }
+
+  public void addTag(Tag tag) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO tags_recipes (tag_id, recipe_id) VALUES (:tag_id, :recipe_id);";
+      con.createQuery(sql)
+        .addParameter("tag_id", tag.getId())
+        .addParameter("recipe_id",this.getId())
         .executeUpdate();
     }
   }
