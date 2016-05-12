@@ -1,17 +1,8 @@
 <div class="col-md-6">
-  <h2>Current Recipe Info:</h2>
-  <p>$recipe.getRating()</p>
-  <p>$recipe.getIngredients()</p>
-  <p>$recipe.getInstructions()</p>
-  <p>$recipe.getDate()</p>
-  </br>
-  <a href="/">Go home</a>
-</div>
-<div class="col-md-6">
   <h2>Update Recipe Info:</h2>
 <form action="/recipe/$recipe.getId()/update" method="post">
   <div class="form-group">
-    <input class="form-control" for="name" name="name" placeholder="Name:"></input>
+    <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
   </div>
   <div class="form-group">
     <input class="form-control" for="ingredients" name="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
@@ -26,7 +17,16 @@
     <input class="form-control" for="category" name="category" placeholder="Food Category:"></input>
   </div>
   <div class="form-group col-xs-2">
-    <button class="btn btn-primary" type="submit">Add</button>
+    <button class="btn btn-primary" type="submit">Update</button>
   </div>
 </form>
+</div>
+<div class="col-md-6">
+  <h2>Current Recipe Info:</h2>
+  <p>$recipe.getRating()</p>
+  <p>$recipe.getIngredients()</p>
+  <p>$recipe.getInstructions()</p>
+  <p>$recipe.getDate()</p>
+  </br>
+  <a href="/" class="btn btn-primary">Go home</a>
 </div>

@@ -33,7 +33,11 @@ public class App {
       String category = request.queryParams("category");
       Recipe newRecipe = new Recipe(rating, name, ingredients, instructions);
       Tag newTag = new Tag(category);
-      newRecipe.save();
+      if(((name.trim()).length() == 0) || (rating == null)) {
+
+      } else {
+        newRecipe.save();
+      }
       newTag.save();
       newRecipe.addTag(newTag);
       response.redirect("/");

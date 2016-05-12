@@ -1,9 +1,46 @@
 <div class="col-md-6">
+  <h3>Add a recipe:</h3>
+  <form action="/" method="post">
+
+    <div class="form-group">
+      <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" for="ingredients" id="ingredients" name="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
+    </div>
+
+    <div class="form-group">
+      <textarea class="form-control" for="instructions" id="instructions" name="instructions" placeholder="Instructions:"></textarea>
+    </div>
+
+    <div class="form-group col-xs-5">
+      <select class="form-control" name="rating" id="rating">
+        <option name="rating" selected="selected" disabled>Select a rating:</option>
+        <option name="rating" id="rating" value="1.png">1 Star</option>
+        <option name="rating" id="rating" value="2.png">2 Star</option>
+        <option name="rating" id="rating" value="3.png">3 Star</option>
+        <option name="rating" id="rating" value="4.png">4 Star</option>
+        <option name="rating" id="rating" value="5.png">5 Star</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control" for="category" id="category" name="category" placeholder="Food Category:"></input>
+    </div>
+
+    <div class="form-group col-xs-2">
+      <button class="btn btn-primary" type="submit">Add</button>
+    </div>
+
+  </form>
+</div>
+<div class="col-md-6">
 
   <h3>Choose a recipe:</h3>
-  <ul>
+  <ul class="mainlist">
     #foreach ($recipe in $recipes)
-      <li><a href="/recipe/$recipe.getId()"<h2>$recipe.getName()</h2></a></li>
+      <li><img src=/images/$recipe.getRating()><a href="/recipe/$recipe.getId()"<h2>$recipe.getName()</h2></a></li>
     #end
   </ul>
 
@@ -17,42 +54,9 @@
     </div>
   </form>
 
-  <ul>
+  <ul class="homelist">
     #foreach ($foundRecipe in $foundRecipes)
-      <li><a href="/recipe/$foundRecipe.getId()">$foundRecipe.getName()</a></li>
+      <li><img src=/images/$foundRecipe.getRating()><a href="/recipe/$foundRecipe.getId()">$foundRecipe.getName()</a></li>
     #end
   </ul>
-
-</div>
-
-
-<div class="col-md-6">
-  <h3>Add a recipe:</h3>
-  <form action="/" method="post">
-
-    <div class="form-group">
-      <input class="form-control" for="name" name="name" placeholder="Name:"></input>
-    </div>
-
-    <div class="form-group">
-      <input class="form-control" for="ingredients" name="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
-    </div>
-
-    <div class="form-group">
-      <textarea class="form-control" for="instructions" name="instructions" placeholder="Instructions:"></textarea>
-    </div>
-
-    <div class="form-group">
-      <input class="form-control" for="rating" name="rating" placeholder="Rating (out of 5 stars):"></input>
-    </div>
-
-    <div class="form-group">
-      <input class="form-control" for="category" name="category" placeholder="Food Category:"></input>
-    </div>
-
-    <div class="form-group col-xs-2">
-      <button class="btn btn-primary" type="submit">Add</button>
-    </div>
-
-  </form>
 </div>

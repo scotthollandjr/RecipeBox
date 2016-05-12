@@ -1,25 +1,23 @@
 <div class="col-md-6">
+  <h2>$recipe.getName()</h2>
+</div>
+<div class="col-md-6 recipelist">
   <h2>Recipe:</h2>
-  <p>Rating: $recipe.getRating()</p>
+  <p><img src=/images/$recipe.getRating()></p>
   <p>Ingredients: $recipe.getIngredients()</p>
   <p>Instructions: $recipe.getInstructions()</p>
   <p>Date created: $recipe.getDate()</p>
   </br>
   </br>
-  <h2>Tags:</h2>
-  #foreach($tag in $tags)
-    <ul>
-      <li>$tag.getCategory()</li>
-    </ul>
-  #end
-  <a href="/recipe/$recipe.getId()/delete">Delete This Recipe</a>
-  </br>
-  <a href="/recipe/$recipe.getId()/update">Update This Recipe</a>
-  </br>
-  <a href="/">Go home</a>
-</div>
-<div class="col-md-6">
-  <h2>Reviews:</h2>
-  <ul>
-  </ul>
+  <a href="/" class="btn btn-primary">Go home</a>
+  <a href="/recipe/$recipe.getId()/update" class="btn btn-success">Update This Recipe</a>
+  <a href="/recipe/$recipe.getId()/delete" class="btn btn-danger">Delete This Recipe</a>
+  <div class="tagDiv">
+    <h2>Tags:</h2>
+    #foreach($tag in $tags)
+      <ul>
+        <li><p>$tag.getCategory()<p></li>
+      </ul>
+    #end
+  </div>
 </div>

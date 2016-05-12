@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TagTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2016-05-12T17:59:44" hostname="epicodus-51.local" time="0.058">
+<testsuite name="TagTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2016-05-12T22:02:55" hostname="epicodus-51.local" time="0.05">
   <properties/>
-  <testcase name="find_findsTagById_true" classname="TagTest" time="0.013"/>
-  <testcase name="Tag_returnsWithCategory_String" classname="TagTest" time="0.005"/>
-  <testcase name="Tag_instantiatesLikeItDo_true" classname="TagTest" time="0.005"/>
-  <testcase name="Tag_returnsTrueIfObjectsEqual_true" classname="TagTest" time="0.004"/>
-  <testcase name="delete_deletesTagFromDatabase_true" classname="TagTest" time="0.015"/>
-  <testcase name="save_savesTagToDatabase_true" classname="TagTest" time="0.014"/>
+  <testcase name="find_findsTagById_true" classname="TagTest" time="0.012"/>
+  <testcase name="Tag_returnsWithCategory_String" classname="TagTest" time="0.004"/>
+  <testcase name="Tag_instantiatesLikeItDo_true" classname="TagTest" time="0.004"/>
+  <testcase name="Tag_returnsTrueIfObjectsEqual_true" classname="TagTest" time="0.003"/>
+  <testcase name="delete_deletesTagFromDatabase_true" classname="TagTest" time="0.014"/>
+  <testcase name="save_savesTagToDatabase_true" classname="TagTest" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
