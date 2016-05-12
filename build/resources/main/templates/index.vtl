@@ -1,46 +1,58 @@
-<h1 class="jumbotron">Recipe Box</h1>
 <div class="col-md-6">
+
   <h3>Choose a recipe:</h3>
   <ul>
     #foreach ($recipe in $recipes)
       <li><a href="/recipe/$recipe.getId()"<h2>$recipe.getName()</h2></a></li>
     #end
   </ul>
+
   <h3>Search for a recipe with a specific ingredient</h3>
   <form action="/" method="get">
-    <div class="form-group">
+    <div class="form-group col-xs-4">
       <input class="form-control" for="search" name="search" placeholder="Search:"></input>
     </div>
     <div class="form-group col-xs-2">
       <button class="btn btn-primary" type="submit">Search</button>
     </div>
   </form>
+
   <ul>
     #foreach ($foundRecipe in $foundRecipes)
-      <li>$foundRecipe.getName()</li>
+      <li><a href="/recipe/$foundRecipe.getId()">$foundRecipe.getName()</a></li>
     #end
   </ul>
+
 </div>
+
+
 <div class="col-md-6">
   <h3>Add a recipe:</h3>
   <form action="/" method="post">
+
     <div class="form-group">
       <input class="form-control" for="name" name="name" placeholder="Name:"></input>
     </div>
+
     <div class="form-group">
       <input class="form-control" for="ingredients" name="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
     </div>
+
     <div class="form-group">
       <textarea class="form-control" for="instructions" name="instructions" placeholder="Instructions:"></textarea>
     </div>
+
     <div class="form-group">
       <input class="form-control" for="rating" name="rating" placeholder="Rating (out of 5 stars):"></input>
     </div>
+
     <div class="form-group">
       <input class="form-control" for="category" name="category" placeholder="Food Category:"></input>
     </div>
+
     <div class="form-group col-xs-2">
       <button class="btn btn-primary" type="submit">Add</button>
     </div>
+
   </form>
 </div>

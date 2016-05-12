@@ -14,15 +14,13 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      System.out.println(request.queryParams("search"));
       if (request.queryParams("search") != null) {
         String search = request.queryParams("search");
-        List<Recipe> foundRecipes = Recipe.getRecipeWithIngredient("%" + search + "%");
+        List<Recipe> foundRecipes = Recipe.getRecipeWithIngredient("%" + search + "" + "%");
         model.put("foundRecipes", foundRecipes);
       }
       model.put("recipes", Recipe.all());
       model.put("template", "templates/index.vtl");
-
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
