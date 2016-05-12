@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RecipeTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2016-05-12T22:02:55" hostname="epicodus-51.local" time="0.171">
+<testsuite name="RecipeTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2016-05-12T22:58:21" hostname="epicodus-51.local" time="0.179">
   <properties/>
-  <testcase name="delete_deletesRecipeFromDB_true" classname="RecipeTest" time="0.017"/>
-  <testcase name="Recipe_ingredientsAreReturnedInList_List" classname="RecipeTest" time="0.004"/>
-  <testcase name="addTags_addsTag_true" classname="RecipeTest" time="0.027"/>
+  <testcase name="delete_deletesRecipeFromDB_true" classname="RecipeTest" time="0.018"/>
+  <testcase name="Recipe_ingredientsAreReturnedInList_List" classname="RecipeTest" time="0.005"/>
+  <testcase name="addTags_addsTag_true" classname="RecipeTest" time="0.028"/>
   <testcase name="Recipe_returnsTrueIfNamesAreEqual_true" classname="RecipeTest" time="0.004"/>
-  <testcase name="find_findsRecipeById_true" classname="RecipeTest" time="0.014"/>
+  <testcase name="find_findsRecipeById_true" classname="RecipeTest" time="0.013"/>
   <testcase name="save_savesRecipes_true" classname="RecipeTest" time="0.013"/>
   <testcase name="getRating_returnsRating_int" classname="RecipeTest" time="0.004"/>
   <testcase name="Recipe_recipeInstantiatesCorrectky_true" classname="RecipeTest" time="0.005"/>
   <testcase name="getDate_returnsDate_Date" classname="RecipeTest" time="0.005"/>
-  <testcase name="update_updateRecipeName_true" classname="RecipeTest" time="0.022"/>
-  <testcase name="addTags_addsMultipleTags_true" classname="RecipeTest" time="0.035"/>
-  <testcase name="getRecipe_returnsRecipeWithSpecificIngredient_Recipe" classname="RecipeTest" time="0.017"/>
+  <testcase name="update_updateRecipeName_true" classname="RecipeTest" time="0.023"/>
+  <testcase name="addTags_addsMultipleTags_true" classname="RecipeTest" time="0.04"/>
+  <testcase name="getRecipe_returnsRecipeWithSpecificIngredient_Recipe" classname="RecipeTest" time="0.019"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

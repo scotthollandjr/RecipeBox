@@ -29,22 +29,43 @@ public class AppTest extends FluentTest {
  }
 
  @Test
- public void displayAddedRecipePage() {
-   goTo("http://localhost:4567/");
-   fill("#name").with("Scotts Tots");
-   submit(".btn", withText("Add"));
+ public void displayRecipe() {
+   Recipe newRecipe = new Recipe("4", "Scotts Tots", "","");
+   newRecipe.save();
+   String path = String.format("http://localhost:4567/recipe/%d", newRecipe.getId());
+   goTo(path);
    assertThat(pageSource()).contains("Scotts Tots");
  }
 
  @Test
- public void updateAddedRecipe() {
-   goTo("http://localhost:4567/");
-   fill("#name").with("Scotts Tots");
-   submit(".btn", withText("Add"));
-   click("a", withText("Scotts Tots"));
-   click("a", withText("Update This Recipe"));
-   fill("#name").with("Todds Tots");
-   submit(".btn", withText("Update"));
+ public void deleteRecipe() {
+   Recipe newRecipe = new Recipe("4", "Scotts Tots", "","");
+   newRecipe.save();
+   newRecipe.delete();
+   String path = String.format("http://localhost:4567");
+   goTo(path);
+   assertThat(pageSource()).doesNotContain("Scotts Tots");
+ }
+
+ @Test
+ public void updateRecipe() {
+   Recipe newRecipe = new Recipe("4", "Scotts Tots", "","");
+   newRecipe.save();
+   newRecipe.update("5", "Todds Tots", "", "");
+   String path = String.format("http://localhost:4567/");
+   goTo(path);
    assertThat(pageSource()).contains("Todds Tots");
+ }
+
+ @Test
+ public void searchForIngredient() {
+   Recipe firstRecipe = new Recipe("4", "Scotts Tots", "beef, cheese","");
+   firstRecipe.save();
+   Recipe secondRecipe = new Recipe("3", "Vincents Pots", "eggs, apples","");
+   secondRecipe.save();
+   Recipe.getRecipeWithIngredient("beef");
+   String path = String.format("http://localhost:4567/?search=beef");
+   goTo(path);
+   assertThat(pageSource()).contains("searchResult");
  }
 }

@@ -4,18 +4,30 @@
   <div class="form-group">
     <input class="form-control" for="name" id="name" name="name" placeholder="Name:"></input>
   </div>
+
   <div class="form-group">
     <input class="form-control" for="ingredients" name="ingredients" placeholder="Ingredients: (example) beef, cheese, salsa, bacon"></input>
   </div>
+
   <div class="form-group">
     <input class="form-control" for="instructions" name="instructions" placeholder="Instructions:"></input>
   </div>
-  <div class="form-group">
-    <input class="form-control" for="rating" name="rating" placeholder="Rating (out of 5 stars):"></input>
+
+  <div class="form-group col-xs-5">
+    <select class="form-control" name="rating" id="rating">
+      <option name="rating" selected="selected" disabled>Select a rating:</option>
+      <option name="rating" id="rating" value="1.png">1 Star</option>
+      <option name="rating" id="rating" value="2.png">2 Star</option>
+      <option name="rating" id="rating" value="3.png">3 Star</option>
+      <option name="rating" id="rating" value="4.png">4 Star</option>
+      <option name="rating" id="rating" value="5.png">5 Star</option>
+    </select>
   </div>
+
   <div class="form-group">
     <input class="form-control" for="category" name="category" placeholder="Food Category:"></input>
   </div>
+
   <div class="form-group col-xs-2">
     <button class="btn btn-primary" type="submit">Update</button>
   </div>
@@ -23,7 +35,7 @@
 </div>
 <div class="col-md-6">
   <h2>Current Recipe Info:</h2>
-  <p>$recipe.getRating()</p>
+  <p class="recipelist"><img src=/images/$recipe.getRating()></p>
   <p>$recipe.getIngredients()</p>
   <p>$recipe.getInstructions()</p>
   <p>$recipe.getDate()</p>

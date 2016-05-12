@@ -56,7 +56,7 @@
 
   <ul class="homelist">
     #foreach ($foundRecipe in $foundRecipes)
-      <li><img src=/images/$foundRecipe.getRating()><a href="/recipe/$foundRecipe.getId()">$foundRecipe.getName()</a></li>
+      <li class="searchResult"><img src=/images/$foundRecipe.getRating()><a href="/recipe/$foundRecipe.getId()">$foundRecipe.getName()</a></li>
     #end
   </ul>
 </div>
