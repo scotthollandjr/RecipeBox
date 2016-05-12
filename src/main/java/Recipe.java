@@ -2,7 +2,7 @@ import java.util.*;
 import org.sql2o.*;
 
 public class Recipe {
-  private int rating;
+  private String rating;
   private String name;
   private String instructions;
   private Date date_created;
@@ -10,7 +10,7 @@ public class Recipe {
   private int id;
   private List<String> ingredientList;
 
-  public Recipe(int rating, String name, String ingredients, String instructions) {
+  public Recipe(String rating, String name, String ingredients, String instructions) {
     this.rating = rating;
     this.name = name;
     this.instructions = instructions;
@@ -22,7 +22,7 @@ public class Recipe {
     return id;
   }
 
-  public int getRating() {
+  public String getRating() {
     return rating;
   }
 
@@ -97,13 +97,44 @@ public class Recipe {
     }
   }
 
-  public void update(String newName) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE recipes SET name = :name WHERE id = :id;";
-      con.createQuery(sql)
-        .addParameter("name", newName)
-        .addParameter("id", id)
-        .executeUpdate();
+  public void update(String newRating, String newName, String newIngredients, String newInstructions) {
+    if(newRating.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE recipes SET rating = :rating WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("rating", newRating)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+
+    if(newName.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE recipes SET name = :name WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("name", newName)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+    if(newIngredients.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE recipes SET ingredients = :ingredients WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("ingredients", newIngredients)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+
+    if(newInstructions.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE recipes SET instructions = :instructions WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("instructions", newInstructions)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
     }
   }
 
@@ -142,21 +173,13 @@ public class Recipe {
     return ingredientList;
   }
 
-  public static Recipe getRecipeWithIngredient(String input) {
+  public static List<Recipe> getRecipeWithIngredient(String input) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM recipes WHERE ingredients LIKE :input";
       return con.createQuery(sql)
         .addParameter("input", input)
-        .executeAndFetchFirst(Recipe.class);
+        .executeAndFetch(Recipe.class);
     }
   }
 
-  // public static Recipe find(int idInput) {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM recipes WHERE id=:id;";
-  //     return con.createQuery(sql)
-  //       .addParameter("id", idInput)
-  //       .executeAndFetchFirst(Recipe.class);
-  //   }
-  // }
 }

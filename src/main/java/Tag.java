@@ -64,4 +64,16 @@ public class Tag {
         .executeUpdate();
     }
   }
+
+  public void update(String newCategory) {
+    if(newCategory.trim().length() != 0) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE tag SET category = :category WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("category", newCategory)
+          .addParameter("id", id)
+          .executeUpdate();
+      }
+    }
+  }
 }
